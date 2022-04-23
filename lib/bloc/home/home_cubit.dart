@@ -36,10 +36,10 @@ class HomeCubit extends Cubit<HomeStates> {
     'how to earn كسب',
     'the seven سبع',
     'the power قوه',
-    'thinking fast التفكير',
-    'Atomic الذريه',
+    'thinking fast and slow',
+    'Atomic الذريه habits',
     'the 4 hour ',
-    'The 48 L قانون',
+    'The 48 L قانون law',
     'who moved تحرك',
     'rich dad القوة',
     "Business الاعمال",
@@ -55,6 +55,16 @@ class HomeCubit extends Cubit<HomeStates> {
     "فن",
     "brain عقلك",
     'How to Stop Worrying',
+    "harry potter",
+    "mindset",
+    "the lucifer",
+    "outliers",
+    "sway",
+    "Power of now",
+    "you are bad",
+    "deep work",
+    "eat that frog",
+    "5 love lang"
   ];
   void changeIndex(int indexa) {
     index = indexa;

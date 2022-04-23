@@ -59,7 +59,7 @@ class _SwipingCardState extends State<SwipingCard>
           body: HeighCubit.get(context).txt[random],
           channelKey: 'Areading',
           image: HeighCubit.get(context).bookImage[random],
-          notificationInterval: 43000,
+          notificationInterval: 5000,
           id: 0,
         );
       },

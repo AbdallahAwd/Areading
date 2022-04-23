@@ -11,7 +11,7 @@ class NotificationApi {
     String? image,
     bool locked = true,
     int id = 0,
-    int notificationInterval = 86400,
+    int notificationInterval = 10000,
   }) async {
     String timeZone = await AwesomeNotifications().getLocalTimeZoneIdentifier();
     await AwesomeNotifications().createNotification(
@@ -26,6 +26,10 @@ class NotificationApi {
           wakeUpScreen: true,
           locked: locked,
           displayOnForeground: true),
+      actionButtons: [
+        NotificationActionButton(
+            key: 'DONE', label: 'Done', buttonType: ActionButtonType.Default)
+      ],
       schedule: NotificationInterval(
           interval: notificationInterval,
           preciseAlarm: true,
