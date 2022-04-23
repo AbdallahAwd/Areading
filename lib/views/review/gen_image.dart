@@ -8,6 +8,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_localization/easy_localization.dart' as localized;
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -44,7 +45,22 @@ class _GenImageState extends State<GenImage> {
   @override
   void initState() {
     super.initState();
+    preventScreenShot();
     updateColor();
+  }
+
+  void preventScreenShot() async {
+    await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  }
+
+  void allowScreenShot() async {
+    await FlutterWindowManager.clearFlags(FlutterWindowManager.FLAG_SECURE);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    allowScreenShot();
   }
 
   int indexa = 0;
