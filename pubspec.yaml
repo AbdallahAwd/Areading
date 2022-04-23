@@ -9,35 +9,35 @@ environment:
 
 dependencies:
   auto_size_text: ^3.0.0
+  awesome_notifications: ^0.6.21
   clipboard: ^0.1.3
   cloud_firestore: ^3.1.11
   connectivity_plus: ^2.3.0
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
+  easy_localization: ^3.0.0
   firebase_auth: ^3.3.13
   firebase_core: ^1.14.0
+  firebase_messaging: ^11.2.13
   floating_bottom_navigation_bar: ^1.5.2
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
   flutter_colorpicker: ^1.0.3
   fluttertoast: ^8.0.9
-  # google_ml_kit: ^0.7.3
   google_sign_in: ^5.2.4
+  http_parser: ^4.0.0
   image_gallery_saver: ^1.7.1
   image_picker: ^0.8.5
   intl: ^0.17.0
   page_transition: ^2.0.5
   palette_generator: ^0.3.3
-  easy_localization: ^3.0.0
-  awesome_notifications: ^0.6.21
-  firebase_messaging: ^11.2.13
+  permission_handler: ^9.2.0
   screenshot: ^1.2.3
   share_plus: ^4.0.4
   shared_preferences: ^2.0.13
   smooth_star_rating_null_safety: ^1.0.4+2
   url_launcher: ^6.0.20
-  permission_handler: ^9.2.0
 
 dev_dependencies:
   flutter_lints: ^1.0.0

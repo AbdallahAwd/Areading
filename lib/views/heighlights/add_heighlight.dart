@@ -230,14 +230,14 @@ class _AddHeighlightState extends State<AddHeighlight> {
         HomeCubit.get(context).bookAuthor =
             model.volumeInfo?.authors?[0] ?? 'Unknown';
         HomeCubit.get(context).bookImage = model
-                .volumeInfo!.imageLinks!.thumbnail ??
+                .volumeInfo!.imageLinks?.thumbnail ??
             'https://www.forewordreviews.com/books/covers/traveling-light.jpg';
         HomeCubit.get(context).bookName = model.volumeInfo!.title ?? 'Unknown';
       },
       child: Row(
         children: [
           Image.network(
-            model.volumeInfo!.imageLinks!.smallThumbnail ??
+            model.volumeInfo!.imageLinks?.smallThumbnail ??
                 'https://www.forewordreviews.com/books/covers/traveling-light.jpg',
             width: 60,
             height: 60,

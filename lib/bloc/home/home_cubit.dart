@@ -5,8 +5,10 @@ import 'package:areading/views/heighlights/heighlights.dart';
 import 'package:areading/views/review/review.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http_parser/http_parser.dart';
 // import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../shared/Helpers/dio.dart';
@@ -85,15 +87,21 @@ class HomeCubit extends Cubit<HomeStates> {
 
   //recognization_google_kit
   String scannedText = '';
-  XFile? imageFile;
+
   void getImage(ImageSource source) async {
     try {
       final pickedImage = await ImagePicker().pickImage(source: source);
-
       if (pickedImage != null) {
-        imageFile = pickedImage;
+        FormData formData = FormData.fromMap({
+          "image": await MultipartFile.fromFile(pickedImage.path,
+              filename: pickedImage.path.split('/').last,
+              contentType: MediaType('image', 'png')),
+          "type": "image/png"
+        });
+
         emit(TextRecognizationLoading());
         // getRecognisedText(pickedImage);
+        extractImageText(formData);
       }
     } catch (e) {
       scannedText = "Error occured while scanning";
@@ -163,6 +171,23 @@ class HomeCubit extends Cubit<HomeStates> {
       emit(GetBooksSuccess());
     }).catchError((onError) {
       emit(GetBooksError());
+    });
+  }
+
+  // text extractor api
+  List<String> strings = [];
+  void extractImageText(data) async {
+    await DioHelper.postData(url: '/', data: data).then((value) {
+      strings = [];
+      for (var i = 0; i < value.data.length; i++) {
+        strings.add(value.data[i]['text']);
+      }
+      print(strings);
+      scannedText = strings.join(' ');
+      emit(TextRecognizationSuccess());
+    }).catchError((onError) {
+      print('Error $onError');
+      emit(TextRecognizationError());
     });
   }
 

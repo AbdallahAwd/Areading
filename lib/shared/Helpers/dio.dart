@@ -1,12 +1,20 @@
+import 'package:areading/shared/constant.dart';
 import 'package:dio/dio.dart';
 
 class DioHelper {
   static late Dio dio;
+  static late Dio extDio;
 
   static init() {
     dio = Dio(
       BaseOptions(
         baseUrl: 'https://www.googleapis.com/books/v1',
+        receiveDataWhenStatusError: true,
+      ),
+    );
+    extDio = Dio(
+      BaseOptions(
+        baseUrl: 'https://api.api-ninjas.com/v1/imagetotext',
         receiveDataWhenStatusError: true,
       ),
     );
@@ -28,14 +36,15 @@ class DioHelper {
 
   static Future<Response> postData({
     required String url,
-    required Map<String, dynamic> data,
+    required var data,
     Map<String, dynamic>? query,
   }) async {
-    dio.options.headers = {
+    extDio.options.headers = {
       'Content-Type': 'application/json',
+      'X-Api-Key': TEXT_EXTRACTOR_API,
     };
 
-    return dio.post(
+    return extDio.post(
       url,
       queryParameters: query,
       data: data,
