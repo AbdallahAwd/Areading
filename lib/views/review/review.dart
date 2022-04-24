@@ -32,8 +32,7 @@ class Review extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  if (HeighCubit.get(context).getAdded.isNotEmpty ||
-                      state is GetSuccess)
+                  if (HeighCubit.get(context).getAdded.isNotEmpty)
                     SwipingCard(isshown != null ? 1 : 6,
                         HeighCubit.get(context).getAdded),
                   const SizedBox(

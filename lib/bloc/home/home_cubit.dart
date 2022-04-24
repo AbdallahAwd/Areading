@@ -192,11 +192,10 @@ class HomeCubit extends Cubit<HomeStates> {
       for (var i = 0; i < value.data.length; i++) {
         strings.add(value.data[i]['text']);
       }
-      print(strings);
+
       scannedText = strings.join(' ');
       emit(TextRecognizationSuccess());
     }).catchError((onError) {
-      print('Error $onError');
       emit(TextRecognizationError());
     });
   }
