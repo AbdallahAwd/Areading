@@ -75,5 +75,13 @@
   "change_theme": "Change Theme",
   "logout": "Logout",
   "gallery": "Gallery",
-  "good_job": "Good Job"
+  "good_job": "Good Job",
+  "review_discovery_title":"Tap to Swip",
+  "review_discovery_dis":"You can Tap to swip between cards and memorize your Areading cards",
+  "heughlight_discovery_title":"Add new Areading Card",
+  "heughlight_discovery_dis":"You can Add Areading card Here to memorize it again",
+  "heughlight_discovery_cam_title":"Add new Areading Card by camera",
+  "heughlight_discovery_cam_dis":"You can Add Areading card here from your camera or gallery but notes it's working currently on English  only",
+  "searchBook_discovery_title":"Searching For books!!",
+  "searchBook_discovery_dis":"Here is the book section where you can find some books and You can search for any book you need and have more information about it"
 }

@@ -3,6 +3,7 @@ import 'package:areading/bloc/home/home_states.dart';
 import 'package:areading/shared/components/components.dart';
 import 'package:areading/themes/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:feature_discovery/feature_discovery.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,18 +40,33 @@ class HomeLayer extends StatelessWidget {
                       style: TextStyle(color: mainColor[index]),
                     ),
                     actions: [
-                      cubit.floatIndex == 2
-                          ? IconButton(
-                              onPressed: () {
-                                navigateTo(
-                                    context,
-                                    PageTransitionType.rightToLeft,
-                                    BookSearch());
-                              },
-                              color: mainColor[index],
-                              icon: const Icon(Icons.search),
-                            )
-                          : const SizedBox()
+                      if (cubit.floatIndex == 2)
+                        DescribedFeatureOverlay(
+                          tapTarget: const Icon(Icons.search),
+                          featureId: 'SearchBooks',
+                          backgroundColor: mainColor[index],
+                          targetColor: Colors.white,
+                          title:
+                              Text(LocaleKeys.searchBook_discovery_title.tr()),
+                          contentLocation: ContentLocation.trivial,
+                          enablePulsingAnimation: true,
+                          pulseDuration: const Duration(seconds: 2),
+                          barrierDismissible: false,
+                          overflowMode: OverflowMode.extendBackground,
+                          openDuration: const Duration(seconds: 1),
+                          description:
+                              Text(LocaleKeys.searchBook_discovery_dis.tr()),
+                          child: IconButton(
+                            onPressed: () {
+                              navigateTo(context,
+                                  PageTransitionType.rightToLeft, BookSearch());
+                            },
+                            color: mainColor[index],
+                            icon: const Icon(Icons.search),
+                          ),
+                        )
+                      else
+                        const SizedBox()
                     ],
                     bottom: cubit.floatIndex == 3
                         ? TabBar(

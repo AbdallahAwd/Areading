@@ -80,4 +80,13 @@ abstract class LocaleKeys {
   static const logout = 'logout';
   static const gallery = 'gallery';
   static const good_job = 'good_job';
+  static const review_discovery_title = 'review_discovery_title';
+  static const review_discovery_dis = 'review_discovery_dis';
+  static const heughlight_discovery_title = 'heughlight_discovery_title';
+  static const heughlight_discovery_dis = 'heughlight_discovery_dis';
+  static const heughlight_discovery_cam_title =
+      'heughlight_discovery_cam_title';
+  static const heughlight_discovery_cam_dis = 'heughlight_discovery_cam_dis';
+  static const searchBook_discovery_title = 'searchBook_discovery_title';
+  static const searchBook_discovery_dis = 'searchBook_discovery_dis';
 }

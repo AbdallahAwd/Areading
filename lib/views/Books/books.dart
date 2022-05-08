@@ -4,6 +4,7 @@ import 'package:areading/themes/colors.dart';
 import 'package:areading/views/Books/book_description.dart';
 import 'package:areading/views/Books/model/book_model.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
@@ -25,6 +26,9 @@ class _BooksState extends State<Books> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      FeatureDiscovery.discoverFeatures(context, <String>['SearchBooks']);
+    });
     topController.addListener(() {
       if (topController.position.maxScrollExtent == topController.offset) {
         HomeCubit.get(context).limit += 3;

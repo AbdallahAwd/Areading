@@ -7,6 +7,7 @@ import 'package:areading/views/Home/home_layer.dart';
 import 'package:areading/views/log/welcome.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:feature_discovery/feature_discovery.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -83,46 +84,51 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => HeighCubit()..getAdd(),
         ),
         BlocProvider(
-          create: (BuildContext context) => SettingCubit()..getUserData(),
+          create: (BuildContext context) => SettingCubit()
+            ..getUserData()
+            ..getDarkSetting()
+            ..getLangSetting(),
         ),
       ],
       child: BlocConsumer<HomeCubit, HomeStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          return MaterialApp(
-            title: 'Areading',
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            theme: ThemeData.light().copyWith(
-              scaffoldBackgroundColor: Colors.white,
-              appBarTheme: AppBarTheme(
-                  elevation: 0.0,
-                  color: Colors.white,
-                  centerTitle: true,
-                  iconTheme: const IconThemeData(color: Colors.black),
-                  actionsIconTheme: const IconThemeData(color: Colors.black),
-                  titleTextStyle:
-                      TextStyle(color: mainColor[index], fontSize: 20)),
+          return FeatureDiscovery(
+            child: MaterialApp(
+              title: 'Areading',
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              theme: ThemeData.light().copyWith(
+                scaffoldBackgroundColor: Colors.white,
+                appBarTheme: AppBarTheme(
+                    elevation: 0.0,
+                    color: Colors.white,
+                    centerTitle: true,
+                    iconTheme: const IconThemeData(color: Colors.black),
+                    actionsIconTheme: const IconThemeData(color: Colors.black),
+                    titleTextStyle:
+                        TextStyle(color: mainColor[index], fontSize: 20)),
+              ),
+              darkTheme: ThemeData.dark().copyWith(
+                scaffoldBackgroundColor: const Color(0xff141616),
+                appBarTheme: AppBarTheme(
+                    elevation: 0.0,
+                    color: const Color(0xff141616),
+                    centerTitle: true,
+                    iconTheme: const IconThemeData(color: Colors.white),
+                    actionsIconTheme: const IconThemeData(color: Colors.white),
+                    titleTextStyle:
+                        TextStyle(color: mainColor[index], fontSize: 20)),
+              ),
+              themeMode: CacheHelper.getData(key: 'isDark') != 'System'
+                  ? CacheHelper.getData(key: 'isDark') == 'Dark'
+                      ? ThemeMode.dark
+                      : ThemeMode.light
+                  : ThemeMode.system,
+              home: uid == null ? const Welcome() : const HomeLayer(),
             ),
-            darkTheme: ThemeData.dark().copyWith(
-              scaffoldBackgroundColor: const Color(0xff141616),
-              appBarTheme: AppBarTheme(
-                  elevation: 0.0,
-                  color: const Color(0xff141616),
-                  centerTitle: true,
-                  iconTheme: const IconThemeData(color: Colors.white),
-                  actionsIconTheme: const IconThemeData(color: Colors.white),
-                  titleTextStyle:
-                      TextStyle(color: mainColor[index], fontSize: 20)),
-            ),
-            themeMode: CacheHelper.getData(key: 'isDark') != 'System'
-                ? CacheHelper.getData(key: 'isDark') == 'Dark'
-                    ? ThemeMode.dark
-                    : ThemeMode.light
-                : ThemeMode.system,
-            home: uid == null ? const Welcome() : const HomeLayer(),
           );
         },
       ),

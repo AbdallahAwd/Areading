@@ -5,6 +5,7 @@ import 'package:areading/shared/Helpers/pref.dart';
 import 'package:areading/shared/components/components.dart';
 import 'package:areading/themes/colors.dart';
 import 'package:areading/views/log/welcome.dart';
+import 'package:areading/views/settings/language.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../../transliations/locale_keys.g.dart';
+import 'dark_mode.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -33,43 +35,8 @@ class _AppState extends State<App> {
               ListTile(
                 leading: const Icon(Icons.dark_mode),
                 title: Text(LocaleKeys.dark_mode.tr()),
-                trailing: DropdownButtonHideUnderline(
-                  child: Container(
-                    width: 120,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Colors.grey.withOpacity(0.5), width: 1),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: DropdownButton<String>(
-                      // value: value ?? 'Lang',
-                      hint: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: AutoSizeText(LocaleKeys.system_mode.tr()),
-                      ),
-                      items: [
-                        DropdownMenuItem(
-                          child: Text(LocaleKeys.system_mode.tr()),
-                          value: 'System',
-                        ),
-                        DropdownMenuItem(
-                          child: Text(LocaleKeys.dark.tr()),
-                          value: 'Dark',
-                        ),
-                        DropdownMenuItem(
-                          child: Text(LocaleKeys.light.tr()),
-                          value: 'Light',
-                        ),
-                      ],
-                      onChanged: (String? val) {
-                        setState(() {
-                          CacheHelper.saveData(key: 'isDark', value: val!);
-                        });
-                        HomeCubit.get(context).changeMode();
-                      },
-                    ),
-                  ),
-                ),
+                onTap: () => navigateTo(context, PageTransitionType.rightToLeft,
+                    const DarkModeScreen()),
               ),
               const SizedBox(
                 height: 10,
@@ -77,41 +44,8 @@ class _AppState extends State<App> {
               ListTile(
                 leading: const Icon(Icons.language),
                 title: Text(LocaleKeys.lang.tr()),
-                trailing: DropdownButtonHideUnderline(
-                  child: Container(
-                    width: 120,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Colors.grey.withOpacity(0.5), width: 1),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: DropdownButton<String>(
-                      // value: value ?? 'Lang',
-                      hint: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: AutoSizeText(LocaleKeys.lang.tr()),
-                      ),
-                      items: const [
-                        DropdownMenuItem(
-                          child: Text('English'),
-                          value: 'English',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('العربية'),
-                          value: 'Arabic',
-                        ),
-                      ],
-                      onChanged: (String? val) {
-                        if (val == 'Arabic') {
-                          context.setLocale(const Locale('ar'));
-                        } else {
-                          context.setLocale(const Locale('en'));
-                        }
-                        HomeCubit.get(context).changeLang();
-                      },
-                    ),
-                  ),
-                ),
+                onTap: () => navigateTo(context, PageTransitionType.rightToLeft,
+                    const LanguageScreen()),
               ),
               ListTile(
                 leading: const Icon(Icons.color_lens),

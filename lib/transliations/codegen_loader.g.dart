@@ -1,10 +1,5 @@
-// DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
-
-// ignore_for_file: prefer_single_quotes
-
-import 'dart:ui';
-
-import 'package:easy_localization/easy_localization.dart' show AssetLoader;
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 
 class CodegenLoader extends AssetLoader {
   const CodegenLoader();
@@ -93,7 +88,18 @@ class CodegenLoader extends AssetLoader {
     "change_theme": "تغيير السمه",
     "logout": "تسجيل الخروج",
     "gallery": "المعرض",
-    "good_job": "عمل رائع"
+    "good_job": "عمل رائع",
+    "review_discovery_title": "انقر لتمريرها",
+    "review_discovery_dis": " يمكنك النقر علي الكارت لتمريره و اظهار الذي يليه",
+    "heughlight_discovery_title": "يمكنك اضافه نص",
+    "heughlight_discovery_dis":
+        "عند اضافه النص سيظهر في قائمة الكروت و عندها يمكنك تذكره",
+    "heughlight_discovery_cam_title": "يمكنك اضافه نص بالكاميرا",
+    "heughlight_discovery_cam_dis":
+        "يمكنك اضافه نص جديد بالكاميرا او المعرض ولكن لاحظ هذه الميزه تعمل حاليا علي اللغه الانجليزيه",
+    "searchBook_discovery_title": "البحث عن الكتب",
+    "searchBook_discovery_dis":
+        "هنا يوجد بعض الكتب و يمكنك ايضا البحث عم الكتاب الذي تريده"
   };
   static const Map<String, dynamic> en = {
     "welcome": "Welcome to",
@@ -175,7 +181,19 @@ class CodegenLoader extends AssetLoader {
     "change_theme": "Change Theme",
     "logout": "Logout",
     "gallery": "Gallery",
-    "good_job": "Good Job"
+    "good_job": "Good Job",
+    "review_discovery_title": "Tap to Swip",
+    "review_discovery_dis":
+        "You can Tap to swip between cards and memorize your Areading cards",
+    "heughlight_discovery_title": "Add new Areading Card",
+    "heughlight_discovery_dis":
+        "You can Add Areading card Here to memorize it again",
+    "heughlight_discovery_cam_title": "Add new Areading Card by camera",
+    "heughlight_discovery_cam_dis":
+        "You can Add Areading card here from your camera or gallery but notes it's working currently on English  only",
+    "searchBook_discovery_title": "Searching For books!!",
+    "searchBook_discovery_dis":
+        "Here is the book section where you can find some books and You can search for any book you need and have more information about it"
   };
   static const Map<String, Map<String, dynamic>> mapLocales = {
     "ar": ar,

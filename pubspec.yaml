@@ -19,6 +19,7 @@ dependencies:
   firebase_auth: ^3.3.13
   firebase_core: ^1.14.0
   firebase_messaging: ^11.2.13
+  feature_discovery: ^0.14.1
   floating_bottom_navigation_bar: ^1.5.2
   flutter:
     sdk: flutter

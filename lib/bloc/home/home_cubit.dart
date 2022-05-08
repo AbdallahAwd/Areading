@@ -26,6 +26,7 @@ class HomeCubit extends Cubit<HomeStates> {
   static HomeCubit get(context) => BlocProvider.of(context);
 
   int floatIndex = 0;
+
   List<String> recentSearch = [];
   void getHistory() async {
     recentSearch = await CacheHelper.getStrings('search') ?? [];
@@ -36,7 +37,7 @@ class HomeCubit extends Cubit<HomeStates> {
     'how to earn كسب',
     'the seven سبع',
     'the power قوه',
-    'thinking fast and slow',
+    'thinking fast تفكير',
     'Atomic الذريه habits',
     'the 4 hour ',
     'The 48 L قانون law',
@@ -57,14 +58,14 @@ class HomeCubit extends Cubit<HomeStates> {
     'How to Stop Worrying',
     "harry potter",
     "mindset",
-    "the lucifer",
-    "outliers",
+    "the lucifer التفكير",
+    "outliers المتميزون",
     "sway",
-    "Power of now",
-    "you are bad",
-    "deep work",
-    "eat that frog",
-    "5 love lang"
+    "Power of now الان",
+    "you are bad انت سئ",
+    "deep work عمل عميق",
+    "eat that frog كل الضفدع",
+    "5 love lang لغات الحب"
   ];
   void changeIndex(int indexa) {
     index = indexa;

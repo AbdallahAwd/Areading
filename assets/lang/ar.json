@@ -75,5 +75,13 @@
   "change_theme": "تغيير السمه",
   "logout": "تسجيل الخروج",
   "gallery": "المعرض",
-  "good_job": "عمل رائع"
+  "good_job": "عمل رائع",
+  "review_discovery_title":"انقر لتمريرها",
+  "review_discovery_dis":" يمكنك النقر علي الكارت لتمريره و اظهار الذي يليه",
+  "heughlight_discovery_title":"يمكنك اضافه نص",
+  "heughlight_discovery_dis":"عند اضافه النص سيظهر في قائمة الكروت و عندها يمكنك تذكره",
+  "heughlight_discovery_cam_title":"يمكنك اضافه نص بالكاميرا",
+  "heughlight_discovery_cam_dis":"يمكنك اضافه نص جديد بالكاميرا او المعرض ولكن لاحظ هذه الميزه تعمل حاليا علي اللغه الانجليزيه",
+  "searchBook_discovery_title":"البحث عن الكتب",
+  "searchBook_discovery_dis":"هنا يوجد بعض الكتب و يمكنك ايضا البحث عم الكتاب الذي تريده"
 }

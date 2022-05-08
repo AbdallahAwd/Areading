@@ -1,6 +1,7 @@
 import 'package:areading/shared/Helpers/pref.dart';
 import 'package:areading/themes/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,8 +14,22 @@ import '../../shared/components/components.dart';
 import '../../transliations/locale_keys.g.dart';
 import 'all_heighlights.dart';
 
-class Review extends StatelessWidget {
+class Review extends StatefulWidget {
   const Review({Key? key}) : super(key: key);
+
+  @override
+  State<Review> createState() => _ReviewState();
+}
+
+class _ReviewState extends State<Review> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      FeatureDiscovery.discoverFeatures(context, <String>['SwipCard']);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     bool? isshown = CacheHelper.getData(key: 'isshown');
@@ -33,8 +48,22 @@ class Review extends StatelessWidget {
                     height: 40,
                   ),
                   if (HeighCubit.get(context).getAdded.isNotEmpty)
-                    SwipingCard(isshown != null ? 1 : 6,
-                        HeighCubit.get(context).getAdded),
+                    DescribedFeatureOverlay(
+                      tapTarget: const Icon(Icons.touch_app),
+                      featureId: 'SwipCard',
+                      backgroundColor: mainColor[index],
+                      targetColor: Colors.white,
+                      title: Text(LocaleKeys.review_discovery_title.tr()),
+                      contentLocation: ContentLocation.above,
+                      enablePulsingAnimation: true,
+                      pulseDuration: const Duration(seconds: 2),
+                      barrierDismissible: false,
+                      overflowMode: OverflowMode.extendBackground,
+                      openDuration: const Duration(seconds: 1),
+                      description: Text(LocaleKeys.review_discovery_dis.tr()),
+                      child: SwipingCard(isshown != null ? 1 : 6,
+                          HeighCubit.get(context).getAdded),
+                    ),
                   const SizedBox(
                     height: 20,
                   ),
