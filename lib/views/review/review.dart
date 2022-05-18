@@ -25,7 +25,7 @@ class _ReviewState extends State<Review> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       FeatureDiscovery.discoverFeatures(context, <String>['SwipCard']);
     });
   }

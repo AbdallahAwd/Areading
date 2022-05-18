@@ -26,7 +26,7 @@ class _BooksState extends State<Books> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       FeatureDiscovery.discoverFeatures(context, <String>['SearchBooks']);
     });
     topController.addListener(() {
@@ -57,7 +57,8 @@ class _BooksState extends State<Books> {
       return BlocConsumer<HomeCubit, HomeStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          return HomeCubit.get(context).bookModel2 == null
+          return HomeCubit.get(context).bookModel2 == null ||
+                  HomeCubit.get(context).bookModel == null
               ? const Center(child: CircularProgressIndicator.adaptive())
               : Padding(
                   padding: const EdgeInsets.all(8.0),

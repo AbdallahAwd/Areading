@@ -1,9 +1,29 @@
 import 'package:areading/shared/components/components.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../themes/colors.dart';
+
 class NotificationApi {
+  static Future<bool> init() {
+    return AwesomeNotifications().initialize(
+      null,
+      [
+        NotificationChannel(
+          channelKey: 'Areading',
+          channelName: 'AreadingReminder',
+          channelDescription: 'Notification channel for Light Azkar',
+          defaultColor: mainColor[index],
+          ledColor: Colors.white,
+          playSound: true,
+          enableLights: true,
+          enableVibration: true,
+        ),
+      ],
+    );
+  }
+
   static void notify({
     required String title,
     required String body,

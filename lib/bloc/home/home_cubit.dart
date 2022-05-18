@@ -9,6 +9,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http_parser/http_parser.dart';
+import 'package:image_cropper/image_cropper.dart';
 // import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../shared/Helpers/dio.dart';
@@ -102,10 +103,31 @@ class HomeCubit extends Cubit<HomeStates> {
   void getImage(ImageSource source) async {
     try {
       final pickedImage = await ImagePicker().pickImage(source: source);
-      if (pickedImage != null) {
+      CroppedFile? croppedFile = await ImageCropper().cropImage(
+        sourcePath: pickedImage!.path,
+        aspectRatioPresets: [
+          CropAspectRatioPreset.square,
+          CropAspectRatioPreset.ratio3x2,
+          CropAspectRatioPreset.original,
+          CropAspectRatioPreset.ratio4x3,
+          CropAspectRatioPreset.ratio16x9
+        ],
+        uiSettings: [
+          AndroidUiSettings(
+              toolbarTitle: 'Cropper',
+              toolbarColor: mainColor[index],
+              toolbarWidgetColor: Colors.white,
+              initAspectRatio: CropAspectRatioPreset.original,
+              lockAspectRatio: false),
+          IOSUiSettings(
+            title: 'Cropper',
+          ),
+        ],
+      );
+      if (croppedFile != null) {
         FormData formData = FormData.fromMap({
-          "image": await MultipartFile.fromFile(pickedImage.path,
-              filename: pickedImage.path.split('/').last,
+          "image": await MultipartFile.fromFile(croppedFile.path,
+              filename: croppedFile.path.split('/').last,
               contentType: MediaType('image', 'png')),
           "type": "image/png"
         });
@@ -116,6 +138,7 @@ class HomeCubit extends Cubit<HomeStates> {
       }
     } catch (e) {
       scannedText = "Error occured while scanning";
+      print('Error ${e.toString()}');
       emit(TextRecognizationError());
     }
   }

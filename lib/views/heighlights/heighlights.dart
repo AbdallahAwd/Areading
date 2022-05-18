@@ -23,7 +23,7 @@ class _HeighLightsState extends State<HeighLights> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       FeatureDiscovery.discoverFeatures(
           context, <String>['AddText', 'AddTextByCam']);
     });
