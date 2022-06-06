@@ -14,6 +14,7 @@ import 'package:palette_generator/palette_generator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 import 'dart:ui' as ui;
+import '../../Ads/reworded_ad.dart';
 import '../../custom/expandable.dart';
 import '../../transliations/locale_keys.g.dart';
 
@@ -89,6 +90,14 @@ class _GenImageState extends State<GenImage> {
               padding: const EdgeInsets.all(15.0),
               child: ListView(
                 children: <Widget>[
+                  isRendering
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          child: LinearProgressIndicator(
+                            color: mainColor[index],
+                          ),
+                        )
+                      : const SizedBox(),
                   imageBuilder(imageColor: imageColor),
                   const SizedBox(
                     height: 10,
@@ -187,9 +196,6 @@ class _GenImageState extends State<GenImage> {
                       ],
                     ),
                   ),
-                  isRendering
-                      ? const LinearProgressIndicator()
-                      : const SizedBox(),
                 ],
               ),
             )
@@ -240,6 +246,7 @@ class _GenImageState extends State<GenImage> {
                   final bytes = await controller.captureFromWidget(
                       Material(child: imageBuilder(imageColor: imageColor)));
                   saveImage(bytes, 'Areading' + DateTime.now().toString());
+                  AdReworded.showAd();
                   pop(context);
                 },
                 textButton: LocaleKeys.save.tr()),
@@ -250,7 +257,9 @@ class _GenImageState extends State<GenImage> {
   }
 
   Future<String> saveImage(Uint8List bytes, String name) async {
-    await [Permission.storage].request();
+    await Permission.storage.isDenied
+        ? await [Permission.storage].request()
+        : null;
     final result = await ImageGallerySaver.saveImage(bytes, name: name);
     return result['filePath'];
   }
@@ -285,13 +294,17 @@ class _GenImageState extends State<GenImage> {
           // widget.model.text!.length > 250 ? 350 : 280
           height: height,
           padding: const EdgeInsets.only(left: 20, bottom: 8, right: 8, top: 8),
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey),
-            color: pickedColor ?? imageColor![indexa],
-            borderRadius: BorderRadius.circular(8.0),
-          ),
+          color: pickedColor ?? imageColor![indexa],
           child: Stack(
             children: <Widget>[
+              Positioned(
+                right: position,
+                child: Text('،،',
+                    style: TextStyle(
+                      color: textColor[textIndex],
+                      fontSize: 50,
+                    )),
+              ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15.0, vertical: 2),
@@ -319,15 +332,21 @@ class _GenImageState extends State<GenImage> {
                 // widget.model.text!.length < 100 ? 80 : 60
                 top: position,
                 child: SizedBox(
-                  width: 250,
-                  child: AutoSizeText(
-                    widget.model.text!,
-                    style: TextStyle(
-                        height: 1.1,
-                        fontSize: 18,
-                        color: textColor[textIndex],
-                        fontWeight: FontWeight.bold),
-                    // textAlign: TextAlign.center,
+                  width: 260,
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 25),
+                    child: AutoSizeText(
+                      widget.model.text!,
+                      textDirection: context.locale == const Locale('ar')
+                          ? TextDirection.rtl
+                          : TextDirection.ltr,
+                      style: TextStyle(
+                          height: 1.1,
+                          fontSize: 18,
+                          color: textColor[textIndex],
+                          fontWeight: FontWeight.bold),
+                      // textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ),

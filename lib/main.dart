@@ -10,6 +10,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'bloc_observer.dart';
 import 'transliations/codegen_loader.g.dart';
 
@@ -17,6 +18,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebasePushHandler);
+  await MobileAds.instance.initialize();
   await CacheHelper.init();
   await EasyLocalization.ensureInitialized();
   await CacheHelper.removeData('isshown');

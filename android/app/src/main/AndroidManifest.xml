@@ -2,6 +2,7 @@
     package="com.areading.amaa">
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
       <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+      <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
    <application
         android:label="Areading"
         
@@ -24,6 +25,7 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
+              
               <meta-data
               android:name="com.google.mlkit.vision.DEPENDENCIES"
               android:value="ica" />
@@ -41,5 +43,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2400508280875448~6697003158"/>
     </application>
 </manifest>

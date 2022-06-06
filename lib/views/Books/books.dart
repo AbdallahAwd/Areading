@@ -197,18 +197,17 @@ Widget categoryBuilder(Items model, context) => InkWell(
       child: Row(
         children: [
           Container(
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(8)),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
             child: Image.network(
               model.volumeInfo?.imageLinks?.thumbnail ??
                   'https://www.forewordreviews.com/books/covers/traveling-light.jpg',
               width: 110,
               fit: BoxFit.cover,
-              errorBuilder: ((context, error, stackTrace) => const SizedBox(
-                  width: 80,
-                  height: 80,
-                  child: CircularProgressIndicator.adaptive())),
+              errorBuilder: ((context, error, stackTrace) => Container(
+                  padding: const EdgeInsets.all(25),
+                  width: 100,
+                  height: 100,
+                  child: const CircularProgressIndicator.adaptive())),
             ),
           ),
           const SizedBox(
@@ -327,7 +326,6 @@ Widget topBuilder(Items model, context) => InkWell(
           ),
           Container(
             margin: const EdgeInsets.only(left: 10),
-            decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
             child: Image.network(
               model.volumeInfo?.imageLinks?.thumbnail ??
                   'https://www.forewordreviews.com/books/covers/traveling-light.jpg',
@@ -335,7 +333,7 @@ Widget topBuilder(Items model, context) => InkWell(
               width: 125,
               fit: BoxFit.cover,
               errorBuilder: ((context, error, stackTrace) => const SizedBox(
-                  width: 100,
+                  width: 120,
                   height: 60,
                   child: Align(
                       alignment: Alignment.bottomCenter,

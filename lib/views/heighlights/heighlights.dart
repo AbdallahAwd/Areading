@@ -1,3 +1,5 @@
+import 'package:areading/Ads/done_ad.dart';
+import 'package:areading/Ads/reworded_ad.dart';
 import 'package:areading/bloc/home/home_cubit.dart';
 import 'package:areading/themes/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -67,6 +69,7 @@ class _HeighLightsState extends State<HeighLights> {
                       child: addHeigh(
                         icon: Icons.camera_alt,
                         onPressed: () {
+                          DoneAd.loadDoneAd();
                           showModalBottomSheet(
                               context: context,
                               builder: (context) => Padding(
@@ -151,6 +154,8 @@ class _HeighLightsState extends State<HeighLights> {
                       child: addHeigh(
                         icon: Icons.edit_note,
                         onPressed: () {
+                          DoneAd.loadDoneAd();
+                          AdReworded.loadRewaredAd();
                           navigateTo(context, PageTransitionType.rightToLeft,
                               const AddHeighlight());
                         },

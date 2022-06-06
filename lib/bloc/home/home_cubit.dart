@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:image_cropper/image_cropper.dart';
-// import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../shared/Helpers/dio.dart';
 import '../../shared/Helpers/pref.dart';
@@ -138,7 +137,6 @@ class HomeCubit extends Cubit<HomeStates> {
       }
     } catch (e) {
       scannedText = "Error occured while scanning";
-      print('Error ${e.toString()}');
       emit(TextRecognizationError());
     }
   }

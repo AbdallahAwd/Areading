@@ -1,3 +1,4 @@
+import 'package:areading/Ads/reworded_ad.dart';
 import 'package:areading/bloc/home/home_cubit.dart';
 import 'package:areading/shared/components/components.dart';
 import 'package:areading/themes/colors.dart';
@@ -6,6 +7,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../Ads/done_ad.dart';
 import '../../bloc/home/home_states.dart';
 import '../../transliations/locale_keys.g.dart';
 
@@ -145,6 +147,7 @@ class _AddHeighlightState extends State<AddHeighlight> {
                           HomeCubit.get(context)
                               .addHeighLight(text: heightController.text);
                           pop(context);
+                          AdReworded.showAd();
                         } else {
                           snackBar(context, LocaleKeys.add_txt_save.tr());
                         }
@@ -209,11 +212,12 @@ class _AddHeighlightState extends State<AddHeighlight> {
                         HomeCubit.get(context)
                             .addHeighLight(text: heightController.text);
                         HomeCubit.get(context).searchModel = null;
+                        DoneAd.showDoneAd();
                       }
                     },
                     borderRadius: 10,
                     height: 50,
-                    textButton: 'Done')
+                    textButton: LocaleKeys.done.tr())
           ],
         );
       },

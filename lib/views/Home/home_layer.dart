@@ -1,3 +1,4 @@
+import 'package:areading/Ads/banner_ad.dart';
 import 'package:areading/bloc/home/home_cubit.dart';
 import 'package:areading/bloc/home/home_states.dart';
 import 'package:areading/shared/components/components.dart';
@@ -98,25 +99,31 @@ class HomeLayer extends StatelessWidget {
                 triggerMode: RefreshIndicatorTriggerMode.anywhere,
                 child: cubit.screens[cubit.floatIndex]),
             bottomNavigationBar: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FloatingNavbar(
-                onTap: (int val) {
-                  cubit.changeFloatindex(val);
-                },
-                currentIndex: cubit.floatIndex,
-                backgroundColor: mainColor[index],
-                items: [
-                  FloatingNavbarItem(
-                      icon: MyIcons.fountain_pen_close_up,
-                      title: LocaleKeys.review.tr()),
-                  FloatingNavbarItem(
-                      icon: Icons.add_circle_outline,
-                      title: LocaleKeys.heighlight.tr()),
-                  FloatingNavbarItem(
-                      icon: Icons.menu_book_rounded,
-                      title: LocaleKeys.book.tr()),
-                  FloatingNavbarItem(
-                      icon: Icons.settings, title: LocaleKeys.setting.tr()),
+              padding: const EdgeInsets.symmetric(horizontal: 0.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  FloatingNavbar(
+                    onTap: (int val) {
+                      cubit.changeFloatindex(val);
+                    },
+                    currentIndex: cubit.floatIndex,
+                    backgroundColor: mainColor[index],
+                    items: [
+                      FloatingNavbarItem(
+                          icon: MyIcons.fountain_pen_close_up,
+                          title: LocaleKeys.review.tr()),
+                      FloatingNavbarItem(
+                          icon: Icons.add_circle_outline,
+                          title: LocaleKeys.heighlight.tr()),
+                      FloatingNavbarItem(
+                          icon: Icons.menu_book_rounded,
+                          title: LocaleKeys.book.tr()),
+                      FloatingNavbarItem(
+                          icon: Icons.settings, title: LocaleKeys.setting.tr()),
+                    ],
+                  ),
+                  const BoxAd(),
                 ],
               ),
             ),

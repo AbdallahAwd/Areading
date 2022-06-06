@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../Ads/reworded_ad.dart';
 import '../../bloc/heighlight/heigh_state.dart';
 import '../../bloc/heighlight/heighlight_bloc.dart';
 import '../../custom/swiping_card.dart';
@@ -70,6 +71,7 @@ class _ReviewState extends State<Review> {
                   InkWell(
                     onTap: () {
                       HapticFeedback.lightImpact();
+                      AdReworded.loadRewaredAd();
                       navigateTo(context, PageTransitionType.bottomToTop,
                           const AllHeighlights());
                     },

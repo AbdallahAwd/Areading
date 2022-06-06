@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:areading/Ads/banner_ad.dart';
+import 'package:areading/Ads/done_ad.dart';
 import 'package:areading/bloc/heighlight/heigh_state.dart';
 import 'package:areading/bloc/heighlight/heighlight_bloc.dart';
 import 'package:areading/shared/components/components.dart';
@@ -65,8 +67,15 @@ class _AllHeighlightsState extends State<AllHeighlights> {
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
                           if (index < HeighCubit.get(context).getAdded.length) {
-                            return addToHeighLights(
-                                HeighCubit.get(context).getAdded[index], index);
+                            return Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                addToHeighLights(
+                                    HeighCubit.get(context).getAdded[index],
+                                    index),
+                                if (index % 2 == 0) const BoxAd(),
+                              ],
+                            );
                           } else {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -284,6 +293,7 @@ class _AllHeighlightsState extends State<AllHeighlights> {
                   dialogButton(
                       onTap: () {
                         vibrate();
+                        DoneAd.loadDoneAd();
                         pop(context);
                         navigateTo(
                             context,
@@ -305,7 +315,6 @@ class _AllHeighlightsState extends State<AllHeighlights> {
                       onTap: () {
                         vibrate();
                         pop(context);
-
                         HeighCubit.get(context).deleteHeighLight(
                             HeighCubit.get(context).getAddedId[indexa]);
                       },

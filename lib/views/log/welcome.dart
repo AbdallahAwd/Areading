@@ -6,6 +6,7 @@ import 'package:areading/views/log/signup.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../../bloc/log/login_cubit.dart';
@@ -19,20 +20,14 @@ class Welcome extends StatefulWidget {
   State<Welcome> createState() => _WelcomeState();
 }
 
-class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
-  AnimationController? _controller;
+class _WelcomeState extends State<Welcome> {
   @override
   void initState() {
     super.initState();
-
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 10))
-          ..repeat();
   }
 
   @override
   void dispose() {
-    _controller!.dispose();
     super.dispose();
   }
 
@@ -54,15 +49,12 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
                 const SizedBox(
                   height: 50,
                 ),
-                AnimatedBuilder(
-                    animation: _controller!,
-                    builder: (_, child) {
-                      return Transform.rotate(
-                          angle: _controller!.value * 2 * 3.14, child: child);
-                    },
-                    child: Image.asset('assets/images/logo.png')),
+                Lottie.asset('assets/images/areading.json'),
+                const SizedBox(
+                  height: 10,
+                ),
                 Align(
-                  alignment: context.deviceLocale == const Locale('ar')
+                  alignment: context.locale == const Locale('ar')
                       ? Alignment.centerRight
                       : Alignment.centerLeft,
                   child: Text(
@@ -77,7 +69,7 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
                   ),
                 ),
                 Align(
-                  alignment: context.deviceLocale == const Locale('ar')
+                  alignment: context.locale == const Locale('ar')
                       ? Alignment.centerLeft
                       : Alignment.centerRight,
                   child: Text.rich(
@@ -151,10 +143,10 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
                       },
                       child: Text(
                         LocaleKeys.signup.tr(),
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'Segoe UI',
                           fontSize: 16,
-                          color: Color(0xff486b89),
+                          color: mainColor[index],
                           fontWeight: FontWeight.w600,
                         ),
                         softWrap: false,
